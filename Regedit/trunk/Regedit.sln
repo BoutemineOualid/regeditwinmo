@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Regedit", "Regedit\Regedit.csproj", "{EDD88489-5E73-41BB-A003-11C7DAB014ED}"
+EndProject
+Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "Regedit.Setup", "Regedit.Setup\Regedit.Setup.vddproj", "{2E6B6703-550E-484D-A923-41FC3DE05831}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDD88489-5E73-41BB-A003-11C7DAB014ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD88489-5E73-41BB-A003-11C7DAB014ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD88489-5E73-41BB-A003-11C7DAB014ED}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EDD88489-5E73-41BB-A003-11C7DAB014ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD88489-5E73-41BB-A003-11C7DAB014ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD88489-5E73-41BB-A003-11C7DAB014ED}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2E6B6703-550E-484D-A923-41FC3DE05831}.Debug|Any CPU.ActiveCfg = Debug
+		{2E6B6703-550E-484D-A923-41FC3DE05831}.Release|Any CPU.ActiveCfg = Release
+		{2E6B6703-550E-484D-A923-41FC3DE05831}.Release|Any CPU.Build.0 = Release
+		{2E6B6703-550E-484D-A923-41FC3DE05831}.Release|Any CPU.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
