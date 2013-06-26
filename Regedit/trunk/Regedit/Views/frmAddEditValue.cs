@@ -82,7 +82,7 @@ namespace Regedit.Views
         {
             if (!closedByUser)
             {
-                // verify if some changes have been made to the data
+                // verify if any changes have been made to the data
                 RegistryKey currentKey = RegistryUtils.OpenKeyFromPath(this.CurrentKeyPath, true);
                 object oldData = currentKey.GetValue(txtName.Text);
                 if (this.Presenter.CurrentData.ToString() == oldData.ToString())
@@ -190,10 +190,10 @@ namespace Regedit.Views
             this.CurrentKeyPath = keyPath;
             this.optDecimal.Checked = true;
 
-            RegistryKey parrentKey = RegistryUtils.OpenKeyFromPath(keyPath, false);
-            object valueData = parrentKey.GetValue(valueName);
-            RegistryValueKind valueKind = parrentKey.GetValueKind(valueName);
-            parrentKey.Close();
+            RegistryKey parentKey = RegistryUtils.OpenKeyFromPath(keyPath, false);
+            object valueData = parentKey.GetValue(valueName);
+            RegistryValueKind valueKind = parentKey.GetValueKind(valueName);
+            parentKey.Close();
 
             // Value Name.
             this.txtName.Text = valueName;

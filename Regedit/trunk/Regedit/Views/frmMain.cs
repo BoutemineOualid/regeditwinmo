@@ -41,7 +41,7 @@ namespace Regedit.Views
             originalValuesListViewHeight = this.lstValues.Height;
             originalValuesListViewTop = this.lstValues.Top;
 
-            // There is a bug in the .NET CF Windows Forms classes that supports scrolling, they don't show the
+            // There is a bug in the .NET CF Windows Forms classes that support scrolling, they don't show the
             //      scroll bars when items are added for the first time. we need to resize them manually
             //      to show the hidden scroll bars.
             this.onMnuViewMenuItemClicked(mnuViewValues, EventArgs.Empty);
@@ -126,7 +126,7 @@ namespace Regedit.Views
             {
                 if (!this.lstValues.SelectedIndices.Count.Equals(0)) // Value
                 {
-                    DialogResult result = MessageBox.Show("Are you sure that you want to delete the selected value?", "Confirmation",
+                    DialogResult result = MessageBox.Show("Are you sure you want to delete the selected value?", "Confirmation",
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if (result != DialogResult.Yes)
                         return;
@@ -141,19 +141,19 @@ namespace Regedit.Views
                 }
                 else // Key
                 {
-                    DialogResult result = MessageBox.Show("Are you sure that you want to delete the selected key?", "Confirmation",
+                    DialogResult result = MessageBox.Show("Are you sure you want to delete the selected key?", "Confirmation",
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if (result != DialogResult.Yes)
                         return;
                     string keyPath = this.trvKeys.SelectedNode.FullPath;
                     string selectedValueName = keyPath.Substring(keyPath.LastIndexOf("\\") + 1);
 
-                    string parrentKeyPath = this.trvKeys.SelectedNode.Parent.FullPath;
-                    RegistryKey parrentKey = RegistryUtils.OpenKeyFromPath(parrentKeyPath, true);
+                    string parentKeyPath = this.trvKeys.SelectedNode.Parent.FullPath;
+                    RegistryKey parentKey = RegistryUtils.OpenKeyFromPath(parentKeyPath, true);
 
-                    parrentKey.DeleteSubKeyTree(selectedValueName);
-                    parrentKey.Flush();
-                    parrentKey.Close();
+                    parentKey.DeleteSubKeyTree(selectedValueName);
+                    parentKey.Flush();
+                    parentKey.Close();
                     // Refreshing the shown content
                     Presenter.RefreshKeys(this.trvKeys.SelectedNode.Parent);
                 }
@@ -216,7 +216,7 @@ namespace Regedit.Views
         {
             // Show the new window
             frmAddEditValue.Instance.ShowDialog(this.trvKeys.SelectedNode.FullPath);
-            // Verify if the user has add a new key
+            // Verify if the user has added a new key
             if (frmAddEditValue.Instance.DialogResult != DialogResult.Cancel)
                 this.Presenter.RefreshValues(this.trvKeys.SelectedNode.FullPath);
         }
