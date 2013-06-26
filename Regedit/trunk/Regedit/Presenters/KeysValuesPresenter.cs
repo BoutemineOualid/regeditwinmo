@@ -89,7 +89,7 @@ namespace Regedit.Presenters
                 item.Tag = valueName;
                 this.Window.lstValues.Items.Add(item);
                 item.ImageIndex = GetImageIndex(valueKind);
-                // This allow us to focus an updated item (Update done by the user) in the list view 
+                // This allows us to focus the updated item (Update done by the user) in the list view 
                 if (valueName == frmAddEditValue.Instance.LastEditedValueName)
                 {
                     item.Selected = true;
@@ -98,7 +98,7 @@ namespace Regedit.Presenters
             }
             // Saving a reference to the source key of these values.
             this.Window.lstValues.Tag = keyPath;
-            key.Close(); // Free ressources
+            key.Close(); // Free resources
             
             // Setting the columns
             if (this.Window.lstValues.Items.Count > 0)
@@ -143,9 +143,8 @@ namespace Regedit.Presenters
                     this.Window.trvKeys.EndUpdate();
                 }
             }
-            else // The node contains some sub nodes, we check if there is some new changes.
+            else // The node contains some sub nodes, we check if there are any new changes.
             {
-                
                 // Removing obsolete keys (This refers to renamed keys)
                 for (int i = 0; i < node.Nodes.Count; i++)
                 {
@@ -172,7 +171,7 @@ namespace Regedit.Presenters
                     for (int i = 0; i < node.Nodes.Count; i++)
                     {
                         string nodesText = node.Nodes[i].Text;
-                        if (i >= subKeysNames.Length || !nodesText.Equals(subKeysNames[i])) // Ok the key must be added here.
+                        if (i >= subKeysNames.Length || !nodesText.Equals(subKeysNames[i])) // The key must be added here.
                         {
                             node.Nodes.RemoveAt(i);
                         }
@@ -180,7 +179,7 @@ namespace Regedit.Presenters
                 }
             }
             showWaitingCursor(false);
-            registryKey.Close();// Free ressoruces
+            registryKey.Close();// Free resoruces
         }
 
         private void showWaitingCursor(bool show)
@@ -195,7 +194,7 @@ namespace Regedit.Presenters
         {
             if (rootSubNodesCollection == null || key == null)
                 return;
-            // Getting the name of the key by removing the path elements' names
+            // Getting the name of the key by removing the path elements
             string[] keyPathComponents = key.Name.Split(new [] {'\\'});
             string name = keyPathComponents[keyPathComponents.Length - 1];
             TreeNode node = rootSubNodesCollection.Add(name); // Adding a new node to the collection.
@@ -209,7 +208,7 @@ namespace Regedit.Presenters
         {
             if (rootSubNodesCollection == null || key == null)
                 return;
-            // Getting the name of the key by removing the path elements' names
+            // Getting the name of the key by removing the path elements
             string[] keyPathElements = key.Name.Split(new[] {'\\'});
             string name = keyPathElements[keyPathElements.Length - 1];
             TreeNode node = new TreeNode(name);

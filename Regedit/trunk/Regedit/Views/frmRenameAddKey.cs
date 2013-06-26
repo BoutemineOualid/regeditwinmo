@@ -46,17 +46,17 @@ namespace Regedit.Views
             }
         }
 
-        private string  parrentKeyPath;
-        public string ParrentKeyPath
+        private string  parentKeyPath;
+        public string ParentKeyPath
         {
             get
             {
-                return parrentKeyPath;
+                return parentKeyPath;
             }
 
             private set
             {
-                parrentKeyPath = value; 
+                parentKeyPath = value; 
             }
         }
 
@@ -85,10 +85,10 @@ namespace Regedit.Views
 
             if (editedNode.Parent != null)
             {
-                this.ParrentKeyPath = editedNode.Parent.FullPath;
-                RegistryKey parrentKey = RegistryUtils.OpenKeyFromPath(this.ParrentKeyPath, false);
-                this.SameLevelKeyNames = new List<string>(parrentKey.GetSubKeyNames());
-                parrentKey.Close();
+                this.ParentKeyPath = editedNode.Parent.FullPath;
+                RegistryKey parentKey = RegistryUtils.OpenKeyFromPath(this.ParentKeyPath, false);
+                this.SameLevelKeyNames = new List<string>(parentKey.GetSubKeyNames());
+                parentKey.Close();
             }
             else
                 this.SameLevelKeyNames = new List<string>();
@@ -133,7 +133,7 @@ namespace Regedit.Views
                  // If no changes have been made to the name, do nothing);
                  if (!this.CurrentNode.Text.Equals(this.txtName.Text))
                  {
-                     RegistryKey parentKey = RegistryUtils.OpenKeyFromPath(this.ParrentKeyPath, true);
+                     RegistryKey parentKey = RegistryUtils.OpenKeyFromPath(this.ParentKeyPath, true);
                      
                      // Renaming it
                      RegistryUtils.RenameSubKey(parentKey, this.CurrentNode.Text, this.txtName.Text);
@@ -142,7 +142,7 @@ namespace Regedit.Views
                      // Updating UI
                      this.CurrentNode.Text = this.txtName.Text;
                  }
-                // the opened key will be closed by the rename method
+                // the open key will be closed by the rename method
             }
             else
             {
@@ -177,7 +177,7 @@ namespace Regedit.Views
             lblError.Text = string.Empty;
             if (IsForRename)
             {
-                // Check if the currently typed name is currently used by another 
+                // Check if the currently typed name is already used by another 
                 // key in the same level of the currently renamed key.
                 if (this.SameLevelKeyNames.Count(keyName => keyName.Equals(this.txtName.Text) && 
                                                             !keyName.Equals(this.CurrentNode.Text)) > 0)
@@ -187,7 +187,7 @@ namespace Regedit.Views
             }
             else
             {
-                // Check if the currently typed name is currently used by another 
+                // Check if the currently typed name is already used by another 
                 // sub key.
                 if (this.SubKeyNames.Count(keyName => keyName.Equals(this.txtName.Text)) > 0)
                     lblError.Text = "This name is currently in use by another key";
@@ -198,7 +198,7 @@ namespace Regedit.Views
         private void onMnuOkClick(object sender, EventArgs e)
         {
             closedByUserFlag = true;
-            // Checking if there is some errors
+            // Checking if there are any errors
             if (string.IsNullOrEmpty(lblError.Text))
             {
                 try
@@ -230,7 +230,7 @@ namespace Regedit.Views
         {
             if (!closedByUserFlag)
             {
-                DialogResult result = MessageBox.Show("Would you like to save this changes?", "Save Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                DialogResult result = MessageBox.Show("Would you like to save these changes?", "Save Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (result == DialogResult.Yes)
                 {
                     // If some errors exist.)

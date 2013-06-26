@@ -97,7 +97,7 @@ namespace Regedit.Presenters
 
             try
             {
-                if (string.IsNullOrEmpty(currentLine)) // If no data is there, get off
+                if (string.IsNullOrEmpty(currentLine)) // If no available data, get out
                     return true;
                 long value = long.Parse(currentLine, this.Window.optHexadecimal.Checked ? NumberStyles.HexNumber : NumberStyles.Number);
 
@@ -138,7 +138,7 @@ namespace Regedit.Presenters
                     // Selecting the line containing the wrong value.
                     //this.Window.txtValue.Select(selectionStartIndex, selectionLength);
 
-                    if (e.KeyCode != Keys.Back) // if this message was fired by the last call to sendkeys, don't show the message error again.
+                    if (e.KeyCode != Keys.Back) // if this event was fired by the last call to sendkeys, don't show the error message again.
                     {
                         // Show an error message.
                         MessageBox.Show("Invalid value. Max accepted value is " + maxValue.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand,
